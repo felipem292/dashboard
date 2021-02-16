@@ -1,0 +1,23 @@
+export const t = {
+  HEADER_TEXT: "The bridge to the future of capital markets.",
+  USERNAME_LABEL: "Enter a Username...",
+  USERNAME_REQUIRED: "Username is requiered",
+  COMPANY_LABEL: "Company Name",
+  COMPANY_REQUIRED: "Company name is required",
+  INVESTOR_BTN: "Investor",
+  ISSUER_BTN: "Issuer",
+  PASSWORD: "Password",
+  PASSWORD_LABEL: "Password...",
+  REQUIRED_PASSWORD: "Password is required",
+  EMAIL: "Email",
+  EMAIL_LABEL: "Enter email...",
+  REQUIRED_EMAIL: "Email is required",
+  MUST_ACCEPT_TERMS: "Must accept terms",
+  CREATE_ACCOUNT: "Create Account",
+  CONFIRMATION_CODE: "Confirmation code is required",
+  ENTER_CONFIRMATION: "Enter confirmation code...",
+  CONFIRM_ACCOUNT: "Confirm Account",
+  REDIRECTING: "Redirecting",
+  FORGOT_LINK:"Forgot password",
+  REGISTER_LINK:"Register account"
+};
