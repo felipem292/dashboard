@@ -1,22 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 import { NavItem, NavLink, Button } from "./../../components";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../_redux/_actions";
+import { ContentConfirm } from "../../components/ContentConfirm";
 
 const NavbarUser = (props) => {
   const dispatch = useDispatch();
 
   function handleLogout(e) {
     e.preventDefault();
-    dispatch(userActions.logout());
+    toast(
+      ContentConfirm({
+        titleAction: "Confirm Logout",
+        text: "This will close the session, unsaved work can be lost",
+        accept: () => {
+          dispatch(userActions.logout());
+        },
+        closeToast: () => {},
+      }),
+      {
+        autoClose: false,
+        hideProgressBar: true,
+      }
+    );
   }
   return (
     <NavItem {...props}>
       <NavLink onClick={handleLogout}>
-        <i className="fa fa-power-off"></i>
+        <i style={{ cursor: "pointer" }} className="fa fa-power-off"></i>
       </NavLink>
     </NavItem>
   );

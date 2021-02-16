@@ -1,7 +1,7 @@
 import React from "react";
-import { Media, Button } from "../../components";
+import { Media, Button } from "reactstrap";
 
-export const ContentAccept = (props) => (
+export const ContentConfirm = (props) => (
   <Media>
     <Media middle left className="mr-3">
       <i className="fa fa-fw fa-2x fa-question text-primary"></i>
