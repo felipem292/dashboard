@@ -25,13 +25,16 @@ Configuraciones de ambiente.
 
 # Build static site
 
+Segun corresponda ejecutar.
+
 ```
-yarn build
+yarn build:dev
+yarn build:prod
 ```
 
-Lo anterior generara una carpeta, build, la cual se utilizara para desplegar el proyecto en heroku o similar a travez de un web server
+Lo anterior generara una carpeta, dist, la cual se utilizara para desplegar el proyecto en heroku o similar a travez de un web server
 
-Puedes corroborar esto inicializando yarn start, lo cual inicia un server de node express y expone la carpeta en el puesto indicado (4001 en develop)
+Puedes corroborar esto inicializando yarn start, lo cual inicia un server de node express y expone la carpeta en el puerto 8080 o como indica server.js const port = process.env.PORT || 8080;
 
 ```
 yarn start
