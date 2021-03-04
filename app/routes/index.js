@@ -18,6 +18,8 @@ import { DefaultSidebar } from "./../layout/components/DefaultSidebar";
 
 import { SidebarANavbar } from "./../layout/components/SidebarANavbar";
 import { SidebarASidebar } from "./../layout/components/SidebarASidebar";
+import { SignUp } from "./Pages/SignUp/SignUp";
+import { TwoFactor } from "./Pages/TwoFactor/TwoFactor";
 
 // eslint-disable-next-line no-unused-vars
 export const RoutedContent = () => {
@@ -27,6 +29,8 @@ export const RoutedContent = () => {
 
       <Route component={ForgotPassword} path="/pages/forgot-password" />
       <Route component={Login} path="/pages/login" />
+      <Route component={TwoFactor} path="/pages/twofactor" />
+      <Route component={SignUp} path="/pages/sigup" />
       <Route component={Landing} path="/dashboards/landing" exact />
       <Route component={Error404} path="/pages/error-404" />
       <Redirect to="/pages/error-404" />

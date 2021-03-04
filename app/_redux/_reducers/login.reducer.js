@@ -4,8 +4,10 @@ const initialState = {
   activeView: 1,
   submitted: false,
   user: {
-    email: "admin.ch.1@quantum-x.io",
-    password: "User2199!.",
+    email: "felipem292@hotmail.com",
+    // password: "Asd.1234567890",
+    // email: "cvillegas@quantum-x.io",
+    password: "Asd.12345678901",
   },
 };
 

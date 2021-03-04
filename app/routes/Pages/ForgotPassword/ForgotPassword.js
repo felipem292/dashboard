@@ -47,6 +47,7 @@ function ForgotPassword() {
     e.preventDefault();
     dispatch(forgotActions.setSubmitted(true));
     if (user.confirmationCode && user.password && user.email) {
+      console.log("desde reseteo de contraseña0", user);
       dispatch(forgotActions.forgotConfirm(user));
     }
   }

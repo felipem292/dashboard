@@ -58,7 +58,7 @@
     "ag-grid-react": "^21.0.1",
     "aws-amplify": "^2.2.6",
     "aws-amplify-react": "^3.1.7",
-    "aws-sdk": "^2.698.0",
+    "aws-sdk": "^2.853.0",
     "bootstrap": "^4.3.1",
     "faker": "^4.1.0",
     "font-awesome": "^4.7.0",

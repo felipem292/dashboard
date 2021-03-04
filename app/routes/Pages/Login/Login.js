@@ -28,7 +28,7 @@ function Login() {
       history.push("/dashboards/landing");
     });
   }, []);
-
+  const elstate = useSelector((state) => state);
   const activeView = useSelector((state) => state.login.activeView);
   const submitted = useSelector((state) => state.login.submitted);
   const user = useSelector((state) => state.login.user);
@@ -44,6 +44,8 @@ function Login() {
     e.preventDefault();
     dispatch(loginActions.setSubmitted(true));
     if (user.email && user.password) {
+      // const usera = Auth.signIn(user.email, user.password);
+      // console.log("user que me da lo edl dispatch", usera);
       dispatch(loginActions.login(user.email, user.password));
     }
   }
