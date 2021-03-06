@@ -18,7 +18,16 @@ export const SidebarMiddleNav = () => {
         icon={<i className="fa fa-fw fa-home"></i>}
         title="Dashboards"
       >
-        <SidebarMenu.Item title="Landing" to="/dashboards/landing" exact />
+        <SidebarMenu.Item
+          title="Tabla de simulaciones"
+          to="/dashboards/landing"
+          exact
+        />
+        <SidebarMenu.Item
+          title="Formulario simulaciones"
+          to="/dashboards/formulariosimulacion"
+          exact
+        />
       </SidebarMenu.Item>
     </SidebarMenu>
   );

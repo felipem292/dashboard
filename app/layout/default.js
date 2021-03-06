@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {
-  Layout,
-  ThemeProvider,
-} from "./../components";
+import { Layout, ThemeProvider } from "./../components";
 
 import "./../styles/bootstrap.scss";
 import "./../styles/main.scss";

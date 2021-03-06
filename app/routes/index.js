@@ -20,15 +20,21 @@ import { SidebarANavbar } from "./../layout/components/SidebarANavbar";
 import { SidebarASidebar } from "./../layout/components/SidebarASidebar";
 import { SignUp } from "./Pages/SignUp/SignUp";
 import { TwoFactor } from "./Pages/TwoFactor/TwoFactor";
+import { SimulationForm } from "./Pages/SimulationForm/SimulationForm";
 
 // eslint-disable-next-line no-unused-vars
 export const RoutedContent = () => {
   return (
     <Switch>
       <Redirect from="/" to="/pages/login" exact />
-
+      {/* <SimulationForm/> */}
       <Route component={ForgotPassword} path="/pages/forgot-password" />
       <Route component={Login} path="/pages/login" />
+      <Route
+        component={SimulationForm}
+        path="/dashboards/formulariosimulacion"
+        exact
+      />
       <Route component={TwoFactor} path="/pages/twofactor" />
       <Route component={SignUp} path="/pages/sigup" />
       <Route component={Landing} path="/dashboards/landing" exact />
