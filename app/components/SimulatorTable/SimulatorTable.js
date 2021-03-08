@@ -7,43 +7,55 @@ const SimulatorTable = ({ simulationData, loading }) => {
       <Table striped>
         <thead>
           <tr>
-            <th>Antiguedad del inmueble</th>
             <th>Fecha</th>
-            <th>Fono Deudor</th>
+            <th>Nombre Deudor</th>
+            <th>Apellido Deudor</th>
+            <th>Telefono Deudor</th>
+            <th>Rut Deudor</th>
+            <th>Objetivo</th>
+            <th>Antiguedad del inmueble</th>
+            <th>Valor venta</th>
             <th>Monto contado</th>
             <th>Monto Subsidio</th>
-            <th>Nombre</th>
-            <th>Objetivo</th>
             <th>Pie</th>
             <th>Plazo</th>
-            <th>Rut Deudor</th>
             <th>Tasa</th>
             <th>UF Cotizada</th>
-            <th>Valor venta</th>
           </tr>
         </thead>
         <tbody>
           {loading ? (
             <td colspan="12">Cargando datos...</td>
           ) : (
-            simulationData.map((data) => (
-              // console.log(data.fonoDeudor);
-              <tr>
-                <td>{data.antiguedad}</td>
-                <td>{data.cratedAt}</td>
-                <td>{data.fonoDeudor}</td>
-                <td>{data.montoContado}</td>
-                <td>{data.montoSubsidio}</td>
-                <td>{data.nombreDeudor}</td>
-                <td>{data.objetivo}</td>
-                <td>{data.pie}</td>
-                <td>{data.plazo}</td>
-                <td>{data.rutDeudor}</td>
-                <td>{data.tasa}</td>
-                <td>{data.ufCotizada}</td>
-                <td>{data.valorVenta}</td>
-              </tr>
-            ))
+            simulationData
+              .sort((a, b) => {
+                // Turn your strings into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return new Date(b.cratedAt) - new Date(a.cratedAt);
+              })
+              .map((data, index) => (
+                // console.log(data.fonoDeudor);
+                <tr key={index}>
+                  <td>{data.cratedAt}</td>
+                  <td>{data.nombreDeudor}</td>
+                  <td>{data.apellidosDeudor}</td>
+                  <td>{data.fonoDeudor}</td>
+                  <td>{data.rutDeudor}</td>
+                  <td>{data.objetivo}</td>
+                  <td>
+                    {data.antiguedad === "0"
+                      ? "nuevo"
+                      : `${data.antiguedad} años`}
+                  </td>
+                  <td>{data.valorVenta}</td>
+                  <td>{data.montoContado}</td>
+                  <td>{data.montoSubsidio}</td>
+                  <td>{data.pie}</td>
+                  <td>{data.plazo}</td>
+                  <td>{data.tasa}</td>
+                  <td>{data.ufCotizada}</td>
+                </tr>
+              ))
           )}
         </tbody>
       </Table>

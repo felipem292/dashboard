@@ -13,8 +13,12 @@ import {
 } from "reactstrap";
 import { useForm } from "../../../hooks/useForm";
 import { SimulationCreditTable } from "./components/SimulationCreditTable";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router";
 
 export const SimulationForm = () => {
+  let history = useHistory();
+
   const [formValues, handleInputChange] = useForm({
     name: "",
     lastName: "",
@@ -24,12 +28,12 @@ export const SimulationForm = () => {
     projectInfo: "",
     projectObjetive: "",
     antiquity: 0,
-    pie: "",
-    interestRate: "",
+    pie: 0,
+    // interestRate: "",
     selectTime: "cantidad de años",
     sellPrice: "",
-    cashValue: "",
-    subsidy: "",
+    cashValue: 0,
+    subsidy: 0,
   });
   const {
     name,
@@ -41,7 +45,7 @@ export const SimulationForm = () => {
     projectObjetive,
     antiquity,
     pie,
-    interestRate,
+    // interestRate,
     selectTime,
     sellPrice,
     cashValue,
@@ -69,14 +73,15 @@ export const SimulationForm = () => {
     setTime(selectTime);
     setTotalCredito(sellPrice - subsidy - cashValue - pie);
   }, [sellPrice, subsidy, cashValue, pie]);
-  const [tasa, setTasa] = useState(4.63);
+  const [tasa, setTasa] = useState(0.0455);
   const [creditPercentage, setCreditPercentage] = useState(0);
   const [TotalCredito, setTotalCredito] = useState(0);
-  const [uFValue, setUFValue] = useState(29.353, 12);
+  const [uFValue, setUFValue] = useState(29063.76);
   const [time, setTime] = useState("");
   const handleValueChange = (e) => {
     console.log(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const simulatedData = {
@@ -96,6 +101,7 @@ export const SimulationForm = () => {
       montoSubsidio: subsidy,
       plazo: selectTime,
     };
+    // console.log(formValues);
     const apiName = "simulationGet";
     const path = "";
     console.log(simulatedData);
@@ -105,18 +111,19 @@ export const SimulationForm = () => {
     };
 
     API.post(apiName, path, myInit)
-      .then((response) => {
-        console.log("respuesta del post", response);
+      .then(() => {
+        Swal.fire("Informacion guardada", "", "success");
+        history.go(0);
       })
       .catch((error) => {
-        console.log(error.response);
+        Swal.fire("Hubo un error", { error }, "error");
       });
   };
 
   return (
     <>
       <h2>Valor UF: ${uFValue}</h2>
-      <Form onSubmit={handleSubmit}>
+      <Form id="SimulatedForm" onSubmit={handleSubmit}>
         <Col md={12}>
           <Row>
             <h3>Cliente</h3>
@@ -129,7 +136,7 @@ export const SimulationForm = () => {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="Tu nombre"
+                  placeholder="Nombres"
                   autoComplete="off"
                   value={name}
                   onChange={handleInputChange}
@@ -144,6 +151,7 @@ export const SimulationForm = () => {
                   type="text"
                   name="rut"
                   id="rut"
+                  placeholder="1.123.456"
                   autoComplete="off"
                   value={rut}
                   onChange={handleInputChange}
@@ -159,7 +167,7 @@ export const SimulationForm = () => {
                   type="text"
                   name="lastName"
                   id="lastName"
-                  placeholder="Tu nombre"
+                  placeholder="Apellidos"
                   autoComplete="off"
                   value={lastName}
                   onChange={handleInputChange}
@@ -173,7 +181,7 @@ export const SimulationForm = () => {
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="email@gmail.com"
+                  placeholder="email@mail.com"
                   autoComplete="off"
                   value={email}
                   onChange={handleInputChange}
@@ -190,6 +198,7 @@ export const SimulationForm = () => {
                   name="phone"
                   id="phone"
                   autoComplete="off"
+                  placeholder="+56319542652"
                   value={phone}
                   onChange={handleInputChange}
                 />
@@ -257,7 +266,7 @@ export const SimulationForm = () => {
             <h3>Credito</h3>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
                 <Label for="sellPrice">Valor de venta</Label>
                 <Input
@@ -270,24 +279,7 @@ export const SimulationForm = () => {
                 />
               </FormGroup>
             </Col>
-            <Col md={6}>
-              <FormGroup check>
-                <Input
-                  type="checkbox"
-                  name="interestRate"
-                  id="interestRate"
-                  autoComplete="off"
-                  value={interestRate}
-                  onChange={handleInputChange}
-                />
-                <Label for="interestRate" check>
-                  Subsidiado
-                </Label>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
                 <Label for="pie">Pie</Label>
                 <Input
@@ -300,10 +292,7 @@ export const SimulationForm = () => {
                 />
               </FormGroup>
             </Col>
-            <Col md={5}></Col>
-          </Row>
-          <Row>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
                 <Label for="cashValue">Monto contado</Label>
                 <Input
@@ -316,14 +305,7 @@ export const SimulationForm = () => {
                 />
               </FormGroup>
             </Col>
-            <Col md={6}>
-              <FormGroup>
-                <h3> total credito {TotalCredito}</h3>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
                 <Label for="subsidy">Subsidio</Label>
                 <Input
@@ -336,14 +318,28 @@ export const SimulationForm = () => {
                 />
               </FormGroup>
             </Col>
-            <Col md={6}>
+            {/* <Col md={3}>
               <FormGroup>
-                <h3> Financiamiento {TotalCredito}</h3>
+                <Label for="interestRate" check>
+                  Subsidiado?
+                </Label>
+                <Input
+                  type="select"
+                  name="interestRate"
+                  id="interestRate"
+                  autoComplete="off"
+                  value={interestRate}
+                  onChange={handleInputChange}
+                >
+                  <option>Seleccione una opcion</option>
+                  <option>Si</option>
+                  <option>No</option>
+                </Input>
               </FormGroup>
-            </Col>
+            </Col> */}
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
                 <Label for="selectTime">Selecciona el plazo</Label>
                 <Input
@@ -362,10 +358,21 @@ export const SimulationForm = () => {
                 </Input>
               </FormGroup>
             </Col>
-            <Col md={6}>
-              <FormGroup>
-                <h4>financiamiento {creditPercentage}%</h4>
-              </FormGroup>
+            <Col md={3}>
+              <h3 className="mt-4">
+                {" "}
+                {TotalCredito > 0 &&
+                  ` Total credito : ${TotalCredito} (${(
+                    TotalCredito / uFValue
+                  ).toFixed(2)} UF)`}
+              </h3>
+            </Col>
+            <Col md={3}>
+              <h3 className="mt-4">
+                {" "}
+                {TotalCredito > 0 &&
+                  `Financiamiento: ${(TotalCredito / sellPrice) * 100} %`}
+              </h3>
             </Col>
           </Row>
         </Col>

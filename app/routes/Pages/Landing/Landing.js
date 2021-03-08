@@ -58,17 +58,9 @@ const Landing = () => {
       </Row>
       <Row>
         <Col lg={12}>
-          <Card className="mb-3">
-            <CardBody>
-              <CardTitle className="mb-4 d-flex"></CardTitle>
-              <div className="d-flex justify-content-center">
-                <SimulatorTable
-                  loading={loading}
-                  simulationData={simulationData}
-                />
-              </div>
-            </CardBody>
-          </Card>
+          <div className="d-flex justify-content-center">
+            <SimulatorTable loading={loading} simulationData={simulationData} />
+          </div>
         </Col>
       </Row>
     </Container>

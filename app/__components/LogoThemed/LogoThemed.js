@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-
+import centralhipotecarialogo from "../../images/logos/centralhipotecarialogo.png";
 import { ThemeConsumer } from "../../components/Theme";
 
 const logos = {
@@ -35,9 +35,10 @@ const LogoThemed = ({ checkBackground, className, ...otherProps }) => (
     {({ style, color }) => (
       <img
         src={
-          checkBackground
-            ? getLogoUrlBackground(style, color)
-            : getLogoUrl(style, color)
+          centralhipotecarialogo
+          // checkBackground
+          //   ? getLogoUrlBackground(style, color)
+          //   : getLogoUrl(style, color)
         }
         width="200"
         height="35"
