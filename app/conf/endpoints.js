@@ -4,7 +4,7 @@ const endpoints = [
   {
     name: "simulationGet",
     endpoint:
-      "https://v5tk1ue754.execute-api.us-east-1.amazonaws.com/dev/simulaciones",
+      "https://v5tk1ue754.execute-api.us-east-1.amazonaws.com/test/simulaciones",
     custom_header: async () => {
       return {
         Authorization: `${(await Auth.currentSession())

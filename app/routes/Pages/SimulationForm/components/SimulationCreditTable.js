@@ -35,7 +35,7 @@ export const SimulationCreditTable = ({
               <th>Tasa fija</th>
               <th>Dividendo Neto</th>
               <th>Seguro incendio y sismo</th>
-              <th>Seguro desgr.</th>
+              <th>Seguro desgravamen</th>
               <th>Seguro cesantia</th>
               <th>Dividendo total</th>
               <th>CAE</th>

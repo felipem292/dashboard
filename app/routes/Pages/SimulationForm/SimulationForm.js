@@ -100,23 +100,7 @@ export const SimulationForm = () => {
     const path = "";
     console.log(simulatedData);
     const myInit = {
-      body: {
-        fonoDeudor: "314829948",
-        montoContado: "0",
-        plazo: "12",
-        antiguedad: "0",
-        pie: "100",
-        rutDeudor: "10.854.568-8",
-        objetivo: "Compra de vivienda-nueva",
-        infoProyecto: "e1942e66-df86-4513-a17b-1a64e0e2b635",
-        apellidosDeudor: "muñoz",
-        tasa: "4.63",
-        ufCotizada: "29.353",
-        nombreDeudor: "andres",
-        valorVenta: "1000",
-        montoSubsidio: "0",
-        email: "felipem292@gmail.com",
-      }, // replace this with attributes you need
+      body: simulatedData, // replace this with attributes you need
       headers: {}, // OPTIONAL
     };
 
@@ -385,15 +369,15 @@ export const SimulationForm = () => {
             </Col>
           </Row>
         </Col>
+        <Col md={12}>
+          <SimulationCreditTable
+            selectTime={selectTime}
+            TotalCredito={TotalCredito}
+            uFValue={uFValue}
+          />
+        </Col>
+        <Button type="submit">Enviar datos</Button>
       </Form>
-      <Col md={12}>
-        <SimulationCreditTable
-          selectTime={selectTime}
-          TotalCredito={TotalCredito}
-          uFValue={uFValue}
-        />
-      </Col>
-      <Button type="submit">Enviar datos</Button>
     </>
   );
 };
