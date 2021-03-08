@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+
+import { API } from "aws-amplify";
 import {
   Col,
   Row,
@@ -19,7 +21,9 @@ export const SimulationForm = () => {
     email: "",
     rut: "",
     phone: "",
-
+    projectInfo: "",
+    projectObjetive: "",
+    antiquity: 0,
     pie: "",
     interestRate: "",
     selectTime: "cantidad de años",
@@ -33,7 +37,9 @@ export const SimulationForm = () => {
     email,
     rut,
     phone,
-
+    projectInfo,
+    projectObjetive,
+    antiquity,
     pie,
     interestRate,
     selectTime,
@@ -41,13 +47,23 @@ export const SimulationForm = () => {
     cashValue,
     subsidy,
   } = formValues;
-  // sellPrice
-  // [pie]
-  // [cashValue]
-  // [subsidy]
-  // useEffect(() => {
-  //   setCreditPercentage((creditAmount / sellPrice) * 100);
-  // }, [sellPrice, TotalCredito]);
+  const [projectsData, setProjectsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const apiName = "projectsGet";
+    const path = "";
+    const myInit = {};
+    API.get(apiName, path, myInit)
+      .then((response) => {
+        console.log("respuesta del api", response);
+
+        !!response && setProjectsData(response);
+        !!projectsData && setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }, []);
   useEffect(() => {
     // setCreditPercentage((creditAmount / sellPrice) * 100);
     setTime(selectTime);
@@ -69,17 +85,48 @@ export const SimulationForm = () => {
       rutDeudor: rut,
       fonoDeudor: phone,
       email: email,
-      antiguedad: 0,
-      objetivo: "prueba",
-      ufCotizada: parseInt(uFValue, 10),
-      tasa: tasa,
-      valorVenta: parseInt(sellPrice, 10),
+      infoProyecto: projectInfo,
+      antiguedad: antiquity.toString(),
+      objetivo: projectObjetive,
+      ufCotizada: uFValue.toString(),
+      tasa: tasa.toString(),
+      valorVenta: sellPrice,
       pie: pie,
-      montoContado: parseInt(cashValue, 10),
-      montoSubsidio: parseInt(subsidy, 10),
-      plazo: parseInt(selectTime, 10),
+      montoContado: cashValue,
+      montoSubsidio: subsidy,
+      plazo: selectTime,
     };
+    const apiName = "simulationGet";
+    const path = "";
     console.log(simulatedData);
+    const myInit = {
+      body: {
+        fonoDeudor: "314829948",
+        montoContado: "0",
+        plazo: "12",
+        antiguedad: "0",
+        pie: "100",
+        rutDeudor: "10.854.568-8",
+        objetivo: "Compra de vivienda-nueva",
+        infoProyecto: "e1942e66-df86-4513-a17b-1a64e0e2b635",
+        apellidosDeudor: "muñoz",
+        tasa: "4.63",
+        ufCotizada: "29.353",
+        nombreDeudor: "andres",
+        valorVenta: "1000",
+        montoSubsidio: "0",
+        email: "felipem292@gmail.com",
+      }, // replace this with attributes you need
+      headers: {}, // OPTIONAL
+    };
+
+    API.post(apiName, path, myInit)
+      .then((response) => {
+        console.log("respuesta del post", response);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   return (
@@ -91,7 +138,7 @@ export const SimulationForm = () => {
             <h3>Cliente</h3>
           </Row>
           <Row>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="name">Nombres</Label>
                 <Input
@@ -106,7 +153,7 @@ export const SimulationForm = () => {
               </FormGroup>
             </Col>
 
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="rut">Rut</Label>
                 <Input
@@ -121,7 +168,7 @@ export const SimulationForm = () => {
             </Col>
           </Row>
           <Row>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="name">Apellidos</Label>
                 <Input
@@ -135,7 +182,7 @@ export const SimulationForm = () => {
                 />
               </FormGroup>
             </Col>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
                 <Input
@@ -151,7 +198,7 @@ export const SimulationForm = () => {
             </Col>
           </Row>
           <Row>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="phone">Phone</Label>
                 <Input
@@ -171,15 +218,54 @@ export const SimulationForm = () => {
           <Row>
             <Col md={5}>
               <FormGroup>
-                <Label for="exampleSelect">info del inmueble por api</Label>
-                <Input type="select" name="select" id="exampleSelect">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                <Label for="projectInfo">Inmubele</Label>
+                <Input
+                  type="select"
+                  name="projectInfo"
+                  id="projectInfo"
+                  value={projectInfo}
+                  onChange={handleInputChange}
+                >
+                  <option>Seleccione un proyecto</option>
+                  {projectsData.map((project, index) => (
+                    <option key={index} value={project.id}>
+                      {project.proyecto}
+                    </option>
+                  ))}
                 </Input>
               </FormGroup>
+            </Col>
+            <Col md={4}>
+              <FormGroup>
+                <Label for="projectObjetive">Objetivo</Label>
+                <Input
+                  type="select"
+                  name="projectObjetive"
+                  id="projectObjetive"
+                  value={projectObjetive}
+                  onChange={handleInputChange}
+                >
+                  <option>Selecciona una opcion</option>
+                  <option>Compra de vivienda-nueva</option>
+                  <option>Compra de vivienda-usada</option>
+                  <option>Refinanciamiento</option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col md={3}>
+              {projectObjetive !== "Compra de vivienda-nueva" && (
+                <FormGroup>
+                  <Label for="antiquity">Antiguedad</Label>
+                  <Input
+                    type="number"
+                    name="antiquity"
+                    id="antiquity"
+                    autoComplete="off"
+                    value={antiquity}
+                    onChange={handleInputChange}
+                  />
+                </FormGroup>
+              )}
             </Col>
           </Row>
 
@@ -187,7 +273,7 @@ export const SimulationForm = () => {
             <h3>Credito</h3>
           </Row>
           <Row>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="sellPrice">Valor de venta</Label>
                 <Input
@@ -200,7 +286,7 @@ export const SimulationForm = () => {
                 />
               </FormGroup>
             </Col>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup check>
                 <Input
                   type="checkbox"
@@ -217,7 +303,7 @@ export const SimulationForm = () => {
             </Col>
           </Row>
           <Row>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="pie">Pie</Label>
                 <Input
@@ -233,7 +319,7 @@ export const SimulationForm = () => {
             <Col md={5}></Col>
           </Row>
           <Row>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="cashValue">Monto contado</Label>
                 <Input
@@ -246,14 +332,14 @@ export const SimulationForm = () => {
                 />
               </FormGroup>
             </Col>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <h3> total credito {TotalCredito}</h3>
               </FormGroup>
             </Col>
           </Row>
           <Row>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="subsidy">Subsidio</Label>
                 <Input
@@ -266,14 +352,14 @@ export const SimulationForm = () => {
                 />
               </FormGroup>
             </Col>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <h3> Financiamiento {TotalCredito}</h3>
               </FormGroup>
             </Col>
           </Row>
           <Row>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="selectTime">Selecciona el plazo</Label>
                 <Input
@@ -283,7 +369,7 @@ export const SimulationForm = () => {
                   value={selectTime}
                   onChange={handleInputChange}
                 >
-                  <option>cantidad de años</option>
+                  <option>Cantidad de años</option>
                   <option>12</option>
                   <option>15</option>
                   <option>20</option>
@@ -292,20 +378,22 @@ export const SimulationForm = () => {
                 </Input>
               </FormGroup>
             </Col>
-            <Col md={5}>
+            <Col md={6}>
               <FormGroup>
                 <h4>financiamiento {creditPercentage}%</h4>
               </FormGroup>
             </Col>
           </Row>
         </Col>
-        <Button type="submit">Mostrar costos</Button>
       </Form>
-      <SimulationCreditTable
-        selectTime={selectTime}
-        TotalCredito={TotalCredito}
-        uFValue={uFValue}
-      />
+      <Col md={12}>
+        <SimulationCreditTable
+          selectTime={selectTime}
+          TotalCredito={TotalCredito}
+          uFValue={uFValue}
+        />
+      </Col>
+      <Button type="submit">Enviar datos</Button>
     </>
   );
 };

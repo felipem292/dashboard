@@ -37,13 +37,15 @@ function login(email, password) {
               console.log("en el error del completenewpass", e);
             });
         } else {
-          const code = prompt("numero");
+          const code = prompt("ingresa el numero de confirmacion");
           try {
             // await Auth.setPreferredMFA("felipem292@hotmail.com", "SMS");
             Auth.confirmSignIn(user, code)
-              .then((resp) =>
-                console.log("desde confirmacion del codigo", resp)
-              )
+              .then((resp) => {
+                console.log("desde confirmacion del codigo", resp);
+                history.push("/dashboards/landing");
+                dispatch(success(user));
+              })
               .catch((err) =>
                 console.log("desde confirmacion del codigo", err)
               );
@@ -52,8 +54,6 @@ function login(email, password) {
             console.log("error confirmando codigo", error);
           }
           // other situations
-          dispatch(success(user));
-          history.push("/dashboards/landing");
         }
         // dispatch(reset(user));
       },

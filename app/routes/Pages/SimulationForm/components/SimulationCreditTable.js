@@ -19,8 +19,8 @@ export const SimulationCreditTable = ({
     let anios = parseInt(selectTime, 10);
     console.log(anios);
     setDividendoNeto(TotalCredito / (anios * 12));
-    setDividendoTotal(totalSeguros + dividendoNeto);
-    setCreditTotalCost(dividendoTotal * 4);
+    // setDividendoTotal(totalSeguros + dividendoNeto);
+    // setCreditTotalCost(dividendoTotal * 4);
   }, [TotalCredito, selectTime]);
   useEffect(() => {
     console.log("hola");
@@ -40,26 +40,32 @@ export const SimulationCreditTable = ({
               <th>Dividendo total</th>
               <th>CAE</th>
               <th>Costo total crédito</th>
-              <th>Renta minima</th>
+              <th>Renta exigida</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>{selectTime}</td>
-              <td>{tasaFija * uFValue}</td>
-              <td>{dividendoNeto * uFValue}</td>
-              <td>{seguroIncendio * uFValue}</td>
-              <td>{seguroDesgra * uFValue}</td>
-              <td>{seguroCesantia * uFValue}</td>
-              <td>{dividendoTotal * uFValue}</td>
+              <td>{(tasaFija * uFValue).toFixed(2)} UF</td>
+              <td>{(dividendoNeto * uFValue).toFixed(2)} UF</td>
+              <td>{(seguroIncendio * uFValue).toFixed(2)} UF</td>
+              <td>{(seguroDesgra * uFValue).toFixed(2)} UF</td>
+              <td>{(seguroCesantia * uFValue).toFixed(2)} UF</td>
+              <td>
+                {((totalSeguros + dividendoNeto) * uFValue).toFixed(2)} UF
+              </td>
               <td>???????</td>
-              <td>{creditTotalCost * uFValue}</td>
-              <td>???????</td>
+              <td>
+                {((totalSeguros + dividendoNeto) * uFValue).toFixed(2)} UF
+              </td>
+              <td>
+                {((totalSeguros + dividendoNeto) * 4 * uFValue).toFixed(2)} UF
+              </td>
             </tr>
           </tbody>
         </Table>
       ) : (
-        <h2>seleccciona numero de años</h2>
+        <h2></h2>
       )}
     </div>
   );
