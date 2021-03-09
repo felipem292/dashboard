@@ -7,15 +7,15 @@ const SimulatorTable = ({ simulationData, loading }) => {
       <Table striped>
         <thead>
           <tr>
-            <th>Fecha</th>
+            <th>Fecha Ingreso</th>
             <th>Nombre Deudor</th>
             <th>Apellido Deudor</th>
             <th>Telefono Deudor</th>
             <th>Rut Deudor</th>
             <th>Objetivo</th>
-            <th>Antiguedad del inmueble</th>
-            <th>Valor venta</th>
-            <th>Monto contado</th>
+            <th>Antiguedad Inmueble</th>
+            <th>Valor Venta</th>
+            <th>Monto Contado</th>
             <th>Monto Subsidio</th>
             <th>Pie</th>
             <th>Plazo</th>

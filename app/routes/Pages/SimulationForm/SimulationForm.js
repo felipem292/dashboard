@@ -122,11 +122,15 @@ export const SimulationForm = () => {
 
   return (
     <>
-      <h2>Valor UF: ${uFValue}</h2>
       <Form id="SimulatedForm" onSubmit={handleSubmit}>
         <Col md={12}>
           <Row>
-            <h3>Cliente</h3>
+            <Col md={6}>
+              <h3>Cliente</h3>
+            </Col>
+            <Col md={6} className="justify-content-end">
+              <h5>Valor UF hoy: ${uFValue}</h5>
+            </Col>
           </Row>
           <Row>
             <Col md={6}>
@@ -140,6 +144,7 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={name}
                   onChange={handleInputChange}
+                  required
                 />
               </FormGroup>
             </Col>
@@ -155,6 +160,7 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={rut}
                   onChange={handleInputChange}
+                  required
                 />
               </FormGroup>
             </Col>
@@ -171,12 +177,13 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={lastName}
                   onChange={handleInputChange}
+                  required
                 />
               </FormGroup>
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label for="exampleEmail">Email</Label>
+                <Label for="exampleEmail">Correo Electronico</Label>
                 <Input
                   type="email"
                   name="email"
@@ -185,6 +192,7 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={email}
                   onChange={handleInputChange}
+                  required
                 />
               </FormGroup>
             </Col>
@@ -192,7 +200,7 @@ export const SimulationForm = () => {
           <Row>
             <Col md={6}>
               <FormGroup>
-                <Label for="phone">Phone</Label>
+                <Label for="phone">Telefono</Label>
                 <Input
                   type="text"
                   name="phone"
@@ -263,7 +271,7 @@ export const SimulationForm = () => {
           </Row>
 
           <Row>
-            <h3>Credito</h3>
+            <h3>Crédito</h3>
           </Row>
           <Row>
             <Col md={3}>
@@ -294,7 +302,7 @@ export const SimulationForm = () => {
             </Col>
             <Col md={3}>
               <FormGroup>
-                <Label for="cashValue">Monto contado</Label>
+                <Label for="cashValue">Monto Contado</Label>
                 <Input
                   type="number"
                   name="cashValue"
@@ -341,7 +349,7 @@ export const SimulationForm = () => {
           <Row>
             <Col md={3}>
               <FormGroup>
-                <Label for="selectTime">Selecciona el plazo</Label>
+                <Label for="selectTime">Selecciona Plazo</Label>
                 <Input
                   type="select"
                   name="selectTime"
