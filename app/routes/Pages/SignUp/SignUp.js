@@ -3,12 +3,12 @@ import { Auth } from "aws-amplify";
 export const SignUp = () => {
   try {
     const { user } = Auth.signUp({
-      username: "andresmunoz",
+      username: "cvillegas",
       password: "Asd.1234567890",
       attributes: {
-        email: "felipem292@hotmail.com", // optional
-        phone_number: "+573148299486",
-        preferred_username: "andres6156", // optional - E.164 number convention
+        email: "cvillegas@quantum-x.io", // optional
+        phone_number: "+573235704586",
+        preferred_username: "cvillegas4586", // optional - E.164 number convention
         // other custom attributes
       },
     });

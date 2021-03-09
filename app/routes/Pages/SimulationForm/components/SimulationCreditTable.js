@@ -31,16 +31,16 @@ export const SimulationCreditTable = ({
         <Table striped>
           <thead>
             <tr>
-              <th>Años de plazo</th>
-              <th>Tasa fija</th>
+              <th>Años Plazo</th>
+              <th>Tasa Fija</th>
               <th>Dividendo Neto</th>
-              <th>Seguro incendio y sismo</th>
-              <th>Seguro desgravamen</th>
-              <th>Seguro cesantia</th>
-              <th>Dividendo total</th>
+              <th>Seguro Incendio y Sismo</th>
+              <th>Seguro Desgravamen</th>
+              <th>Seguro Cesantía</th>
+              <th>Dividendo Total</th>
               <th>CAE</th>
-              <th>Costo total crédito</th>
-              <th>Renta exigida</th>
+              <th>Costo Total Crédito</th>
+              <th>Renta Exigida</th>
             </tr>
           </thead>
           <tbody>

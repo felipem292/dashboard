@@ -28,12 +28,12 @@ export const SimulationForm = () => {
     projectInfo: "",
     projectObjetive: "",
     antiquity: 0,
-    pie: 0,
+    pie: "",
     // interestRate: "",
     selectTime: "cantidad de años",
     sellPrice: "",
-    cashValue: 0,
-    subsidy: 0,
+    cashValue: "",
+    subsidy: "",
   });
   const {
     name,
@@ -125,15 +125,16 @@ export const SimulationForm = () => {
       <Form id="SimulatedForm" onSubmit={handleSubmit}>
         <Col md={12}>
           <Row>
-            <Col md={6}>
+            <Col md={6} className="mb-3 mt-3">
               <h3>Cliente</h3>
             </Col>
-            <Col md={6} className="justify-content-end">
-              <h5>Valor UF hoy: ${uFValue}</h5>
+            <Col md={4}></Col>
+            <Col md={2} className="mb-3 mt-3">
+              <h6>Valor UF hoy: ${uFValue}</h6>
             </Col>
           </Row>
-          <Row>
-            <Col md={6}>
+          <Row className="row justify-content-around">
+            <Col md={3}>
               <FormGroup>
                 <Label for="name">Nombres</Label>
                 <Input
@@ -144,29 +145,11 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={name}
                   onChange={handleInputChange}
-                  required
+                  required={true}
                 />
               </FormGroup>
             </Col>
-
-            <Col md={6}>
-              <FormGroup>
-                <Label for="rut">Rut</Label>
-                <Input
-                  type="text"
-                  name="rut"
-                  id="rut"
-                  placeholder="1.123.456"
-                  autoComplete="off"
-                  value={rut}
-                  onChange={handleInputChange}
-                  required
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
                 <Label for="name">Apellidos</Label>
                 <Input
@@ -177,13 +160,30 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={lastName}
                   onChange={handleInputChange}
-                  required
+                  required={true}
                 />
               </FormGroup>
             </Col>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
-                <Label for="exampleEmail">Correo Electronico</Label>
+                <Label for="rut">Rut</Label>
+                <Input
+                  type="text"
+                  name="rut"
+                  id="rut"
+                  placeholder="1.123.456"
+                  autoComplete="off"
+                  value={rut}
+                  onChange={handleInputChange}
+                  required={true}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="row justify-content-around">
+            <Col md={3}>
+              <FormGroup>
+                <Label for="exampleEmail">Correo Electrónico</Label>
                 <Input
                   type="email"
                   name="email"
@@ -192,15 +192,13 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={email}
                   onChange={handleInputChange}
-                  required
+                  required={true}
                 />
               </FormGroup>
             </Col>
-          </Row>
-          <Row>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
-                <Label for="phone">Telefono</Label>
+                <Label for="phone">Teléfono</Label>
                 <Input
                   type="text"
                   name="phone"
@@ -209,23 +207,29 @@ export const SimulationForm = () => {
                   placeholder="+56319542652"
                   value={phone}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </FormGroup>
             </Col>
+            <Col md={3}></Col>
           </Row>
+          <Row className="row justify-content-around"></Row>
           <Row>
-            <h3>Inmueble</h3>
+            <Col md={3} className="mb-3 mt-3">
+              <h3>Inmueble</h3>
+            </Col>
           </Row>
-          <Row>
-            <Col md={5}>
+          <Row className="row justify-content-around">
+            <Col md={3}>
               <FormGroup>
-                <Label for="projectInfo">Inmubele</Label>
+                <Label for="projectInfo">Inmueble</Label>
                 <Input
                   type="select"
                   name="projectInfo"
                   id="projectInfo"
                   value={projectInfo}
                   onChange={handleInputChange}
+                  required={true}
                 >
                   <option>Seleccione un proyecto</option>
                   {projectsData.map((project, index) => (
@@ -236,7 +240,7 @@ export const SimulationForm = () => {
                 </Input>
               </FormGroup>
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <FormGroup>
                 <Label for="projectObjetive">Objetivo</Label>
                 <Input
@@ -245,6 +249,7 @@ export const SimulationForm = () => {
                   id="projectObjetive"
                   value={projectObjetive}
                   onChange={handleInputChange}
+                  required={true}
                 >
                   <option>Selecciona una opcion</option>
                   <option>Compra de vivienda-nueva</option>
@@ -264,6 +269,7 @@ export const SimulationForm = () => {
                     autoComplete="off"
                     value={antiquity}
                     onChange={handleInputChange}
+                    required={true}
                   />
                 </FormGroup>
               )}
@@ -271,10 +277,12 @@ export const SimulationForm = () => {
           </Row>
 
           <Row>
-            <h3>Crédito</h3>
+            <Col md={3} className="mb-3 mt-3">
+              <h3>Crédito</h3>
+            </Col>
           </Row>
-          <Row>
-            <Col md={3}>
+          <Row className="row justify-content-around">
+            <Col md={2}>
               <FormGroup>
                 <Label for="sellPrice">Valor de venta</Label>
                 <Input
@@ -284,10 +292,11 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={sellPrice}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </FormGroup>
             </Col>
-            <Col md={3}>
+            <Col md={2}>
               <FormGroup>
                 <Label for="pie">Pie</Label>
                 <Input
@@ -297,10 +306,11 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={pie}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </FormGroup>
             </Col>
-            <Col md={3}>
+            <Col md={2}>
               <FormGroup>
                 <Label for="cashValue">Monto Contado</Label>
                 <Input
@@ -310,10 +320,11 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={cashValue}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </FormGroup>
             </Col>
-            <Col md={3}>
+            <Col md={2}>
               <FormGroup>
                 <Label for="subsidy">Subsidio</Label>
                 <Input
@@ -323,6 +334,7 @@ export const SimulationForm = () => {
                   autoComplete="off"
                   value={subsidy}
                   onChange={handleInputChange}
+                  required={true}
                 />
               </FormGroup>
             </Col>
@@ -346,16 +358,17 @@ export const SimulationForm = () => {
               </FormGroup>
             </Col> */}
           </Row>
-          <Row>
-            <Col md={3}>
+          <Row className="row justify-content-around">
+            <Col md={2}>
               <FormGroup>
-                <Label for="selectTime">Selecciona Plazo</Label>
+                <Label for="selectTime">Plazo</Label>
                 <Input
                   type="select"
                   name="selectTime"
                   id="selectTime"
                   value={selectTime}
                   onChange={handleInputChange}
+                  required={true}
                 >
                   <option>Cantidad de años</option>
                   <option>12</option>
@@ -366,41 +379,36 @@ export const SimulationForm = () => {
                 </Input>
               </FormGroup>
             </Col>
-            <Col md={3}>
-              <h3 className="mt-4">
+            <Col md={2}>
+              <h5 className="mt-4">
                 {" "}
                 {TotalCredito > 0 &&
-                  ` Total credito : ${TotalCredito} (${(
+                  ` Total Credito : ${TotalCredito} (${(
                     TotalCredito / uFValue
                   ).toFixed(2)} UF)`}
-              </h3>
+              </h5>
             </Col>
-            <Col md={3}>
-              <h3 className="mt-4">
+            <Col md={2}>
+              <h5 className="mt-4">
                 {" "}
                 {TotalCredito > 0 &&
                   `Financiamiento: ${(TotalCredito / sellPrice) * 100} %`}
-              </h3>
+              </h5>
             </Col>
+            <Col md={2}></Col>
           </Row>
         </Col>
-        <Col md={12}>
+        <Col md={12} className="mt-5">
           <SimulationCreditTable
             selectTime={selectTime}
             TotalCredito={TotalCredito}
             uFValue={uFValue}
           />
         </Col>
-        <Button type="submit">Enviar datos</Button>
+        <Col md={3} className="mt-5 ">
+          <Button type="submit">Enviar Datos</Button>
+        </Col>
       </Form>
     </>
   );
 };
-{
-  /* <Row>
-<Col md={5}>
-</Col>
-<Col md={5}>
-</Col>
-</Row> */
-}

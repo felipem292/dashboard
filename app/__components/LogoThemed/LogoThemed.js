@@ -41,7 +41,7 @@ const LogoThemed = ({ checkBackground, className, ...otherProps }) => (
           //   : getLogoUrl(style, color)
         }
         width="200"
-        height="35"
+        height="58"
         className={classNames("d-block", className)}
         alt="Airframe Logo"
         {...otherProps}

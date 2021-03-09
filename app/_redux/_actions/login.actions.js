@@ -3,6 +3,7 @@ import { loginService } from "../../_services";
 import { alertActions } from "./alert.actions";
 import { history } from "../_helpers";
 import { Auth } from "aws-amplify";
+import Swal from "sweetalert2";
 export const loginActions = {
   login,
   setUser,
@@ -37,22 +38,40 @@ function login(email, password) {
               console.log("en el error del completenewpass", e);
             });
         } else {
-          const code = prompt("ingresa el numero de confirmacion");
-          try {
-            // await Auth.setPreferredMFA("felipem292@hotmail.com", "SMS");
-            Auth.confirmSignIn(user, code)
-              .then((resp) => {
-                console.log("desde confirmacion del codigo", resp);
-                history.push("/dashboards/landing");
-                dispatch(success(user));
-              })
-              .catch((err) =>
-                console.log("desde confirmacion del codigo", err)
-              );
-            // Auth.confirmSignUp("andresmunoz", code);
-          } catch (error) {
-            console.log("error confirmando codigo", error);
-          }
+          // const code = prompt("ingresa el numero de confirmacion");
+          Swal.fire({
+            title: "Ingresa tu número de confirmación",
+            input: "text",
+            inputAttributes: {
+              autocapitalize: "off",
+            },
+            showCancelButton: true,
+            confirmButtonText: "Enviar",
+            showLoaderOnConfirm: true,
+            preConfirm: (code) => {
+              try {
+                // await Auth.setPreferredMFA("felipem292@hotmail.com", "SMS");
+                Auth.confirmSignIn(user, code)
+                  .then((resp) => {
+                    console.log("desde confirmacion del codigo", resp);
+                    history.push("/dashboards/landing");
+                    dispatch(success(user));
+                  })
+                  .catch((err) =>
+                    console.log("desde confirmacion del codigo", err)
+                  );
+                // Auth.confirmSignUp("andresmunoz", code);
+              } catch (error) {
+                console.log("error confirmando codigo", error);
+              }
+            },
+            allowOutsideClick: () => !Swal.isLoading(),
+          })
+            .then((result) => {
+              console.log(result);
+            })
+            .catch((err) => console.log("esta vuelta se daño"));
+
           // other situations
         }
         // dispatch(reset(user));

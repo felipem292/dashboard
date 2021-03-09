@@ -10,7 +10,7 @@ const SimulatorTable = ({ simulationData, loading }) => {
             <th>Fecha Ingreso</th>
             <th>Nombre Deudor</th>
             <th>Apellido Deudor</th>
-            <th>Telefono Deudor</th>
+            <th>Teléfono Deudor</th>
             <th>Rut Deudor</th>
             <th>Objetivo</th>
             <th>Antiguedad Inmueble</th>
