@@ -21,6 +21,9 @@ import { SidebarASidebar } from "./../layout/components/SidebarASidebar";
 import { SignUp } from "./Pages/SignUp/SignUp";
 import { TwoFactor } from "./Pages/TwoFactor/TwoFactor";
 import { SimulationForm } from "./Pages/SimulationForm/SimulationForm";
+import { ProfileVerificationPage } from "./Pages/ProfileVerification/ProfileVerificationPage";
+import { Operations } from "./Pages/Operations/Operations";
+import { ConsultationScreen } from "./Pages/Consultation/ConsultationScreen";
 
 // eslint-disable-next-line no-unused-vars
 export const RoutedContent = () => {
@@ -35,6 +38,18 @@ export const RoutedContent = () => {
         path="/dashboards/formulariosimulacion"
         exact
       />
+      <Route
+        component={ProfileVerificationPage}
+        path="/dashboards/profile-verification"
+        exact
+      />
+
+      <Route
+        component={ConsultationScreen}
+        path="/dashboards/consultas"
+        exact
+      />
+      <Route component={Operations} path="/dashboards/operations" exact />
       <Route component={TwoFactor} path="/pages/twofactor" />
       <Route component={SignUp} path="/pages/sigup" />
       <Route component={Landing} path="/dashboards/landing" exact />
