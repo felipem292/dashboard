@@ -6,9 +6,6 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import Login from "./Pages/Login";
 import Error404 from "./Pages/Error404";
 
-// All Landing
-import Landing from "./Pages/Landing";
-
 // Layout Components
 import NavbarOnly from "./Layouts/NavbarOnly";
 import SidebarWithNavbar from "./Layouts/SidebarWithNavbar";
@@ -18,41 +15,25 @@ import { DefaultSidebar } from "./../layout/components/DefaultSidebar";
 
 import { SidebarANavbar } from "./../layout/components/SidebarANavbar";
 import { SidebarASidebar } from "./../layout/components/SidebarASidebar";
-import { SignUp } from "./Pages/SignUp/SignUp";
-import { TwoFactor } from "./Pages/TwoFactor/TwoFactor";
-import { SimulationForm } from "./Pages/SimulationForm/SimulationForm";
-import { ProfileVerificationPage } from "./Pages/ProfileVerification/ProfileVerificationPage";
-import { Operations } from "./Pages/Operations/Operations";
-import { ConsultationScreen } from "./Pages/Consultation/ConsultationScreen";
+import { UploadDocument } from "./Pages/uploadDocument.js/UploadDocument";
+import { DocumentsTracking } from "./Pages/documentsTracking/DocumentsTracking";
 
 // eslint-disable-next-line no-unused-vars
 export const RoutedContent = () => {
   return (
     <Switch>
       <Redirect from="/" to="/pages/login" exact />
-      {/* <SimulationForm/> */}
+
       <Route component={ForgotPassword} path="/pages/forgot-password" />
       <Route component={Login} path="/pages/login" />
+      <Route component={UploadDocument} path="/inicio/enviar" exact />
+      <Route component={DocumentsTracking} path="/inicio/seguimiento" exact />
       <Route
-        component={SimulationForm}
-        path="/dashboards/formulariosimulacion"
-        exact
-      />
-      <Route
-        component={ProfileVerificationPage}
+        component={DocumentsTracking}
         path="/dashboards/profile-verification"
         exact
       />
 
-      <Route
-        component={ConsultationScreen}
-        path="/dashboards/consultas"
-        exact
-      />
-      <Route component={Operations} path="/dashboards/operations" exact />
-      <Route component={TwoFactor} path="/pages/twofactor" />
-      <Route component={SignUp} path="/pages/sigup" />
-      <Route component={Landing} path="/dashboards/landing" exact />
       <Route component={Error404} path="/pages/error-404" />
       <Redirect to="/pages/error-404" />
     </Switch>

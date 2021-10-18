@@ -3,9 +3,6 @@ import faker from "faker/locale/en_US";
 import { Link } from "react-router-dom";
 
 import { Sidebar, Avatar, AvatarAddOn } from "../../components";
-import { randomAvatar } from "../../utilities";
-
-const avatarImg = randomAvatar();
 
 const SidebarTopA = () => (
   <React.Fragment>
@@ -28,7 +25,7 @@ const SidebarTopA = () => (
       <Sidebar.Section>
         <Avatar.Image
           size="sm"
-          src={avatarImg}
+          // src={avatarImg}
           addOns={[
             <AvatarAddOn.Icon
               className="fa fa-circle"

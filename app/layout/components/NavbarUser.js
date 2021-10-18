@@ -6,6 +6,7 @@ import { NavItem, NavLink, Button } from "./../../components";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../_redux/_actions";
 import { ContentConfirm } from "../../components/ContentConfirm";
+import { t } from "../../_utils/texts/forgot";
 
 const NavbarUser = (props) => {
   const dispatch = useDispatch();
@@ -14,17 +15,12 @@ const NavbarUser = (props) => {
     e.preventDefault();
     toast(
       ContentConfirm({
-        titleAction: "Confirm Logout",
-        text: "This will close the session, unsaved work can be lost",
+        titleAction: "Confirmar cierre de sesión",
+        text: "Esto cerrará la sesión, el trabajo no guardado se puede perder",
         accept: () => {
           dispatch(userActions.logout());
         },
-        closeToast: () => {},
-      }),
-      {
-        autoClose: false,
-        hideProgressBar: true,
-      }
+      })
     );
   }
   return (

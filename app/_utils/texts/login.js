@@ -9,6 +9,7 @@ export const t = {
   REQUIRED_PASSWORD: "Contraseña requerida",
   SIGN_IN_BUTTON: "Ingresar",
   LOADING_LOGIN: "Autenticando ...",
-  FORGOT_LINK: "Olvide Contraseña ?",
+  FORGOT_LINK: "Recuperar contraseña",
   REGISTER_LINK: "Registro ",
+  REGISTER: "Registrarse",
 };

@@ -14,13 +14,13 @@ import { profileService } from "../../_services";
 export const DefaultSidebar = () => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    Auth.currentAuthenticatedUser().then((user) => {
-      profileService.getProfile(user).then((u) => {
-        setUser(u);
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   Auth.currentAuthenticatedUser().then((user) => {
+  //     profileService.getProfile(user).then((u) => {
+  //       setUser(u);
+  //     });
+  //   });
+  // }, []);
 
   return (
     <Sidebar>
@@ -45,9 +45,10 @@ export const DefaultSidebar = () => {
       {/* START SIDEBAR: Only for Mobile */}
       <Sidebar.HideSlim>
         <Sidebar.Section>
-          {user != null && (
-            <ProfileDetailNav user={user.user} profile={user.profile} />
-          )}
+          <h5 className="text-center  text-xs font-weight-bold text-capitalize mb-1">
+            Bienvenido Ejecutivo Mauricio Cáceres
+          </h5>
+          {/* <h5 className="text-center text-xs text-muted mt-0"></h5> */}
         </Sidebar.Section>
       </Sidebar.HideSlim>
 

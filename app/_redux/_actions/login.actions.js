@@ -54,7 +54,7 @@ function login(email, password) {
                 Auth.confirmSignIn(user, code)
                   .then((resp) => {
                     console.log("desde confirmacion del codigo", resp);
-                    history.push("/dashboards/landing");
+                    history.push("/inicio/enviar");
                     dispatch(success(user));
                   })
                   .catch((err) =>

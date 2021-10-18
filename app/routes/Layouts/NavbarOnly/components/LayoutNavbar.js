@@ -13,7 +13,6 @@ import {
   UncontrolledDropdown,
   ThemeConsumer,
 } from "../../../../components";
-import { randomAvatar } from "../../../../utilities";
 
 import { NavbarActivityFeed } from "./../../../../layout/components/NavbarActivityFeed";
 import { NavbarMessages } from "./../../../../layout/components/NavbarMessages";
@@ -51,7 +50,7 @@ export const LayoutNavbar = () => (
           <DropdownToggle nav>
             <Avatar.Image
               size="sm"
-              src={randomAvatar()}
+              // src={randomAvatar()}
               addOns={[
                 <AvatarAddOn.Icon
                   className="fa fa-circle"

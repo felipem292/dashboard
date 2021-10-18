@@ -23,11 +23,11 @@ import { history } from "../../../_redux/_helpers";
 import { t } from "../../../_utils/texts/login";
 
 function Login() {
-  useEffect(() => {
-    Auth.currentAuthenticatedUser().then(() => {
-      history.push("/dashboards/landing");
-    });
-  }, []);
+  // useEffect(() => {
+  //   Auth.currentAuthenticatedUser().then(() => {
+  //     history.push("/dashboards/landing");
+  //   });
+  // }, []);
   const elstate = useSelector((state) => state);
   const activeView = useSelector((state) => state.login.activeView);
   const submitted = useSelector((state) => state.login.submitted);
@@ -96,11 +96,29 @@ function Login() {
             </FormGroup>
             <ThemeConsumer>
               {({ color }) => (
-                <Button color={color} block>
+                <Button
+                  onClick={() => history.push("/inicio/enviar")}
+                  color={color}
+                  block
+                >
                   {submitted && (
                     <span className="spinner-border spinner-border-sm mr-1"></span>
                   )}
                   {t.SIGN_IN_BUTTON}
+                </Button>
+              )}
+            </ThemeConsumer>
+            <ThemeConsumer>
+              {({ color }) => (
+                <Button
+                  onClick={() => history.push("/inicio/enviar")}
+                  color={color}
+                  block
+                >
+                  {submitted && (
+                    <span className="spinner-border spinner-border-sm mr-1"></span>
+                  )}
+                  {t.REGISTER}
                 </Button>
               )}
             </ThemeConsumer>
@@ -118,7 +136,7 @@ function Login() {
             {t.FORGOT_LINK}
           </Link>
         </div>
-        <FooterAuth />
+        {/* <FooterAuth /> */}
       </EmptyLayout.Section>
     </EmptyLayout>
   );

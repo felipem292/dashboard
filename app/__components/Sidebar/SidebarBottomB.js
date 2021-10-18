@@ -12,7 +12,6 @@ import {
   Avatar,
   AvatarAddOn,
 } from "../../components";
-import { randomAvatar } from "../../utilities";
 
 import { DropdownProfile } from "../Dropdowns/DropdownProfile";
 import { FooterAuth } from "../Pages/FooterAuth";
@@ -33,7 +32,7 @@ const SidebarBottomB = () => (
               <Media left middle className="mr-3">
                 <Avatar.Image
                   size="md"
-                  src={randomAvatar()}
+                  // src={randomAvatar()}
                   addOns={[
                     <AvatarAddOn.Icon
                       className="fa fa-circle"
@@ -68,7 +67,7 @@ const SidebarBottomB = () => (
             <DropdownToggle color="link" className="text-left pl-0 pb-0">
               <Avatar.Image
                 size="sm"
-                src={randomAvatar()}
+                // src={randomAvatar()}
                 addOns={[
                   <AvatarAddOn.Icon
                     className="fa fa-circle"
